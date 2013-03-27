@@ -1,14 +1,21 @@
 var PlaylistEntryView = Backbone.View.extend({
 
   tagName: 'tr',
-
-  template: _.template('<td><%= artist %></td><td><%= title %></td>'),
+  template: _.template(
+    '<td><%= artist %></td><td><%= title %></td> \
+    <td> \
+      <button type="button" class="remove">Remove From Playlist</button> \
+    </td>'
+    ),
 
   events: {
-    'click' : function() {
-      this.$el.detach();
+    'click .remove' : function() {
+      this.model.removeFromPlayList();
+      this.$el.remove();
     },
-    'click .playSong' : function() { this.model.play(); }
+    'click' : function() {
+      this.model.play();
+    }
   },
 
   render: function(){

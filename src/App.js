@@ -5,13 +5,17 @@ var App = Backbone.Model.extend({
     this.set('playlist', new Playlist());
 
     params.library.on('play', function(song){
-      // debugger;
       this.set('currentSong', song);
     }, this);
-// debugger;
-    this.get('library').on('addToPlayList', function(song){
+
+    params.library.on('addToPlayList', function(song){
       this.get('playlist').add(song);
     }, this);
+
+    params.library.on('removeFromPlayList', function(song){
+      this.get('playlist').remove(song);
+    }, this);
+
   }
 
 });
