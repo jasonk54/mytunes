@@ -5,7 +5,10 @@ var PlaylistEntryView = Backbone.View.extend({
   template: _.template('<td><%= artist %></td><td><%= title %></td>'),
 
   events: {
-    'click .playSong'     : function() { this.model.play(); }
+    'click' : function() {
+      this.$el.detach();
+    },
+    'click .playSong' : function() { this.model.play(); }
   },
 
   render: function(){
